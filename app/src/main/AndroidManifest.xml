@@ -2,13 +2,203 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.giino.bydcontrol">
 
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-    <uses-permission android:name="android.permission.BYDAUTO_DOOR_LOCK_COMMON" />
-    <uses-permission android:name="android.permission.BYDAUTO_DOOR_LOCK_GET" />
-
+<!--  Permet à l'application de se lancer une fois le démarrage du système terminé. Elle peut rallonger le temps de démarrage du téléphone et ralentir son fonctionnement global en raison de son exécution continue.  -->
+<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+<!--  Cette application peut se superposer à d'autres applications ou à d'autres parties de l'écran. Cela peut altérer l'utilisation normale des applications et modifier l'apparence des autres applications.  -->
+<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+<uses-permission android:name="android.permission.READ_LOGS"/>
+<!--  Autorise l'application à utiliser des services de premier plan.  -->
+<uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+<!--  Permet à l'application d'empêcher le téléphone de passer en mode veille.  -->
+<uses-permission android:name="android.permission.WAKE_LOCK"/>
+<!--  Autorise l'appli à afficher des notifications  -->
+<uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+<!--  Permet à l'application de créer des sockets réseau et d'utiliser des protocoles réseau personnalisés. Le navigateur et d'autres applications permettent d'envoyer des données sur Internet. Cette autorisation n'est donc pas nécessaire pour envoyer des données sur Internet.  -->
+<uses-permission android:name="android.permission.INTERNET"/>
+<uses-permission android:name="com.androidauto.provider.permission.deviceInfo"/>
+<!--  Permet à l'application d'accéder à la configuration du Bluetooth sur le téléphone, et d'établir et accepter des connexions avec les appareils associés.  -->
+<uses-permission android:name="android.permission.BLUETOOTH"/>
+<!--  Permet à l'application de configurer le téléphone Bluetooth local, d'identifier des appareils distants et de les associer au téléphone.  -->
+<uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+<!--  Autorise l'appli à détecter et à associer les appareils Bluetooth à proximité  -->
+<uses-permission android:name="android.permission.BLUETOOTH_SCAN" android:usesPermissionFlags="neverForLocation"/>
+<!--  Autorise l'appli à se connecter à des appareils Bluetooth associés  -->
+<uses-permission android:name="android.permission.BLUETOOTH_CONNECT"/>
+<!--  Cette application peut obtenir votre position approximative via les services de localisation lorsque vous l'utilisez. Pour cela, vous devez activer les services de localisation sur votre appareil au préalable.  -->
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+<!--  Cette application peut accéder à votre position précise via les services de localisation lorsque vous l'utilisez. Pour cela, vous devez activer les services de localisation sur votre appareil au préalable. Cela risque de solliciter davantage la batterie.  -->
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+<!--  Permet à l'application d'accéder à des informations sur les réseaux Wi-Fi afin de savoir si une connexion Wi-Fi est activée et pour connaître le nom des appareils connectés au Wi-Fi, par exemple.  -->
+<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+<!--  Permet à l'application d'accéder à des informations sur les connexions réseau, comme les réseaux existants et connectés.  -->
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+<!--  Permet à l'application de se connecter à des points d'accès Wi-Fi, de s'en déconnecter et de modifier la configuration de l'appareil pour les réseaux Wi-Fi.  -->
+<uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+<!--  Permet à l'application d'accéder aux fonctionnalités téléphoniques de l'appareil. Cette autorisation permet à l'application de déterminer le numéro de téléphone et les identifiants de l'appareil, si un appel est actif et le numéro distant connecté par un appel.  -->
+<uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+<!--  Permet à une application de demander l'installation de packages.  -->
+<uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+<uses-permission android:name="android.permission.DEVICE_POWER"/>
+<!--  Cette application peut se superposer à d'autres applications ou à d'autres parties de l'écran. Cela peut altérer l'utilisation normale des applications et modifier l'apparence des autres applications.  -->
+<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+<uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW"/>
+<!--  Cette application peut utiliser l'appareil photo pour prendre des photos et enregistrer des vidéos quand elle est en cours d'utilisation.  -->
+<uses-permission android:name="android.permission.CAMERA"/>
+<!--  Cette application peut utiliser le micro pour réaliser des enregistrements audio quand elle est en cours d'utilisation.  -->
+<uses-permission android:name="android.permission.RECORD_AUDIO"/>
+<uses-permission android:name="android.permission.CAPTURE_AUDIO_OUTPUT"/>
+<uses-permission android:name="android.permission.CAPTURE_VIDEO_OUTPUT"/>
+<uses-permission android:name="android.permission.MANAGE_MEDIA_PROJECTION"/>
+<uses-permission android:name="android.permission.INJECT_EVENTS"/>
+<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+<uses-permission android:name="android.permission.START_ACTIVITIES_FROM_BACKGROUND"/>
+<!--  Permet de lire le contenu mémoire de stockage partagée.  -->
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+<!--  Permet de modifier le contenu mémoire de stockage partagée.  -->
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="28"/>
+<uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
+<uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS"/>
+<!--  Permet à l'application de modifier les paramètres du système. Des applications malveillantes peuvent exploiter cette fonctionnalité pour corrompre la configuration de votre système.  -->
+<uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+<uses-permission android:name="android.permission.READ_LOGS"/>
+<uses-permission android:name="android.permission.DEVICE_ACC"/>
+<uses-permission android:name="android.permission.BYDACQUISITION_SEND_BUFFER"/>
+<uses-permission android:name="android.permission.BYDACQUISITION_SEND_FILE"/>
+<uses-permission android:name="android.permission.BYDDIAGNOSTIC_SEND_BUFFER"/>
+<uses-permission android:name="android.permission.BYD_CAMERA"/>
+<!--  Permet à l'application de contrôler le vibreur.  -->
+<uses-permission android:name="android.permission.VIBRATE"/>
+<uses-permission android:name="android.permission.FLASHLIGHT"/>
+<uses-permission android:name="com.byd.ditrainer.permission.CORE"/>
+<uses-permission android:name="com.van.diplus.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"/>
+<uses-feature android:name="android.hardware.bluetooth" android:required="true"/>
+<uses-feature android:name="android.hardware.camera" android:required="false"/>
+<uses-feature android:glEsVersion="0x30002" android:required="false"/>
+<uses-permission android:name="android.permission.BYDAUTO_AC_COMMON"/>
+<uses-permission android:name="android.permission.BYDAUTO_AC_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_AC_SET"/>
+<uses-permission android:name="android.permission.BYDAUTO_BODYWORK_COMMON"/>
+<uses-permission android:name="android.permission.BYDAUTO_BODYWORK_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_BODYWORK_SET"/>
+<uses-permission android:name="android.permission.BYDAUTO_INSTRUMENT_COMMON"/>
+<uses-permission android:name="android.permission.BYDAUTO_INSTRUMENT_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_INSTRUMENT_SET"/>
+<uses-permission android:name="android.permission.BYDAUTO_ENGINE_COMMON"/>
+<uses-permission android:name="android.permission.BYDAUTO_ENGINE_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_ENGINE_SET"/>
+<uses-permission android:name="android.permission.BYDAUTO_PM2P5_COMMON"/>
+<uses-permission android:name="android.permission.BYDAUTO_PM2P5_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_PM2P5_SET"/>
+<uses-permission android:name="android.permission.BYDAUTO_AUDIO_COMMON"/>
+<uses-permission android:name="android.permission.BYDAUTO_AUDIO_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_AUDIO_SET"/>
+<uses-permission android:name="android.permission.BYDAUTO_CHARGING_COMMON"/>
+<uses-permission android:name="android.permission.BYDAUTO_CHARGING_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_CHARGING_SET"/>
+<uses-permission android:name="android.permission.BYDAUTO_TYRE_COMMON"/>
+<uses-permission android:name="android.permission.BYDAUTO_TYRE_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_TYRE_SET"/>
+<uses-permission android:name="android.permission.BYDAUTO_LIGHT_COMMON"/>
+<uses-permission android:name="android.permission.BYDAUTO_LIGHT_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_LIGHT_SET"/>
+<uses-permission android:name="android.permission.BYDAUTO_ENERGY_COMMON"/>
+<uses-permission android:name="android.permission.BYDAUTO_ENERGY_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_ENERGY_SET"/>
+<uses-permission android:name="android.permission.BYDAUTO_SPEED_COMMON"/>
+<uses-permission android:name="android.permission.BYDAUTO_SPEED_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_SPEED_SET"/>
+<uses-permission android:name="android.permission.BYDAUTO_SETTING_COMMON"/>
+<uses-permission android:name="android.permission.BYDAUTO_SETTING_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_SETTING_SET"/>
+<uses-permission android:name="android.permission.BYDAUTO_TIME_COMMON"/>
+<uses-permission android:name="android.permission.BYDAUTO_TIME_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_TIME_SET"/>
+<uses-permission android:name="android.permission.BYDAUTO_RADAR_COMMON"/>
+<uses-permission android:name="android.permission.BYDAUTO_RADAR_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_RADAR_SET"/>
+<uses-permission android:name="android.permission.BYDAUTO_STATISTIC_COMMON"/>
+<uses-permission android:name="android.permission.BYDAUTO_STATISTIC_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_STATISTIC_SET"/>
+<uses-permission android:name="android.permission.BYDAUTO_GEARBOX_COMMON"/>
+<uses-permission android:name="android.permission.BYDAUTO_GEARBOX_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_DOOR_LOCK_COMMON"/>
+<uses-permission android:name="android.permission.BYDAUTO_DOOR_LOCK_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_DOOR_LOCK_SET"/>
+<uses-permission android:name="android.permission.BYDAUTO_SAFETY_BELT_COMMON"/>
+<uses-permission android:name="android.permission.BYDAUTO_SAFETY_BELT_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_SAFETY_BELT_SET"/>
+<uses-permission android:name="android.permission.BYDAUTO_SEAT_COMMON"/>
+<uses-permission android:name="android.permission.BYDAUTO_SEAT_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_SEAT_SET"/>
+<uses-permission android:name="android.permission.BYDAUTO_SRS_COMMON"/>
+<uses-permission android:name="android.permission.BYDAUTO_SRS_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_SRS_SET"/>
+<uses-permission android:name="android.permission.BYDAUTO_SENSOR_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_SENSOR_SET"/>
+<uses-permission android:name="android.permission.BYDAUTO_MULTIMEDIA_COMMON"/>
+<uses-permission android:name="android.permission.BYDAUTO_MULTIMEDIA_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_MULTIMEDIA_SET"/>
+<uses-permission android:name="android.permission.BYDAUTO_PANORAMA_COMMON"/>
+<uses-permission android:name="android.permission.BYDAUTO_PANORAMA_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_PANORAMA_SET"/>
+<uses-permission android:name="android.permission.BYDAUTO_SECURITY_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_COLLISION_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_COLLISION_SET"/>
+<uses-permission android:name="android.permission.BYDAUTO_LOCATION_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_LOCATION_SET"/>
+<uses-permission android:name="android.permission.BYDAUTO_VIDEO_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_VIDEO_SET"/>
+<uses-permission android:name="android.permission.BYDAUTO_AUX_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_AUX_SET"/>
+<uses-permission android:name="android.permission.BYDAUTO_BLUETOOTH_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_BLUETOOTH_SET"/>
+<uses-permission android:name="android.permission.BYDAUTO_RADIO_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_RADIO_SET"/>
+<uses-permission android:name="android.permission.BYDAUTO_POWER_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_POWER_SET"/>
+<uses-permission android:name="android.permission.BYDAUTO_SPECIAL_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_SPECIAL_SET"/>
+<uses-permission android:name="android.permission.BYDAUTO_REMINDER_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_REMINDER_SET"/>
+<uses-permission android:name="android.permission.BYDAUTO_VERSION_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_VERSION_SET"/>
+<uses-permission android:name="android.permission.BYDAUTO_FUNCNOTICE_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_FUNCNOTICE_SET"/>
+<uses-permission android:name="android.permission.BYDAUTO_PHONE_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_PHONE_SET"/>
+<uses-permission android:name="android.permission.BYDAUTO_MOTOR_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_MOTOR_SET"/>
+<uses-permission android:name="android.permission.BYDAUTO_CPUTEMPRATURE_SET"/>
+<uses-permission android:name="android.permission.BYDAUTO_OTA_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_OTA_SET"/>
+<uses-permission android:name="android.permission.BYDAUTO_QCFS_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_QCFS_SET"/>
+<uses-permission android:name="android.permission.BYDAUTO_SIGNAL_SET"/>
+<uses-permission android:name="android.permission.BYDAUTO_ADAS_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_ADAS_SET"/>
+<uses-permission android:name="android.permission.BYDAUTO_RESCUE_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_RESCUE_SET"/>
+<uses-permission android:name="android.permission.BYDAUTO_TEST_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_TEST_SET"/>
+<uses-permission android:name="android.permission.BYDAUTO_DTC_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_DTC_SET"/>
+<uses-permission android:name="android.permission.BYDAUTO_WIPER_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_WIPER_SET"/>
+<uses-permission android:name="android.permission.BYDAUTO_REAR_VIEW_MIRROR_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_REAR_VIEW_MIRROR_SET"/>
+<uses-permission android:name="android.permission.BYDAUTO_VEHICLE_DATA_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_VEHICLE_DATA_SET"/>
+<uses-permission android:name="android.permission.BYDAUTO_BIGDATA_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_YUN_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_GB_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_RSE_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_RSE_SET"/>
+<uses-permission android:name="android.permission.BYDAUTO_MQTT_GET"/>
+<uses-permission android:name="android.permission.BYDAUTO_MQTT_SET"/>
+<!--  Permet aux applications d'accepter des messages Cloud to Device (C2D) envoyés par leur service. L'utilisation de ce type de service implique la consommation de données, qui peut être excessive dans le cadre d'applications malveillantes.  -->
+<uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
+<!--  Permet à cette application de lire les données de configuration des services Google.  -->
+<uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
 
     <!-- BYD framework often gates hardware listeners behind a permission like the
          one below. The exact name varies by Dilink build; if registerListener
