@@ -6,6 +6,8 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.BYDAUTO_DOOR_LOCK_COMMON" />
+
 
     <!-- BYD framework often gates hardware listeners behind a permission like the
          one below. The exact name varies by Dilink build; if registerListener
